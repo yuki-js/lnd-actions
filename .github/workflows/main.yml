@@ -28,13 +28,13 @@ jobs:
           mkdir -p $GOPATH/src/github.com/lightningnetwork
           cd $GOPATH/src/github.com/lightningnetwork
           git clone https://github.com/lightningnetwork/lnd
-          git checkout $LND_COMMIT_ID
           cd lnd
+          git checkout $LND_COMMIT_ID
           patch -u mobile/bindings.go < $GITHUB_WORKSPACE/bindings.patch
           cd ..
           make android || make android
           cd mobile/build/android
-      - name: upload APK
+      - name: upload AAR
         uses: actions/upload-artifact@v2
         with:
           name: Lndmobile.aar
