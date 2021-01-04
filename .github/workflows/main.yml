@@ -27,7 +27,7 @@ jobs:
           git clone https://github.com/lightningnetwork/lnd
           cd lnd
           git checkout $LND_COMMIT_ID
-          patch -u mobile/bindings.go < $GITHUB_WORKSPACE/bindings.patch
+          patch -u mobile/bindings.go < $GITHUB_WORKSPACE/bindings.patch || cat mobile/bindings.go
           cd ..
           make android || make android
           cd mobile/build/android

@@ -28,10 +28,10 @@
  	}
  
  	// Call the "real" main in a nested manner so the defers will properly
-@@ -112,22 +107,4 @@
+@@ -112,20 +107,2 @@
  
  		unlockerReady.OnResponse([]byte{})
- 	}()
+- 	}()
 -
 -	go func() {
 -		<-rpcListening
@@ -49,6 +49,6 @@
 -		addLightningLisDialOption(auth...)
 -
 -		rpcReady.OnResponse([]byte{})
--	}()
+	}()
  }
 \ No newline at end of file
