@@ -1,5 +1,5 @@
---- bindings.go	2021-01-04 19:54:26.000000000 +0900
-+++ bindings.go	2021-01-04 19:57:39.000000000 +0900
+--- bindings_orig.go	2021-01-04 20:39:18.000000000 +0900
++++ bindings.go	2021-01-04 20:17:14.000000000 +0900
 @@ -25,7 +25,7 @@
  // NOTE: On mobile platforms the '--lnddir` argument should be set to the
  // current app directory in order to ensure lnd has the permissions needed to

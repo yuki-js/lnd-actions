@@ -1,13 +1,10 @@
-name: Lint & Build
+name: Build
 on:
   push:
 
 jobs:
   lnd:
     runs-on: ubuntu-latest
-    continue-on-error: true
-    strategy:
-      fail-fast: false
     env:
       GOPATH: /go
       GOVERSION: 1.15.6
