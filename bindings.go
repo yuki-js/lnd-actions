@@ -85,7 +85,6 @@ func Start(extraArgs string, unlockerReady Callback) {
 			} else {
 				fmt.Fprintln(os.Stderr, err)
 			}
-			os.Exit(0) // changed to see android behavior
 		}
 	}()
 
