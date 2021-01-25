@@ -25,7 +25,7 @@ import (
 // NOTE: On mobile platforms the '--lnddir` argument should be set to the
 // current app directory in order to ensure lnd has the permissions needed to
 // write to it.
-func Start(extraArgs string, unlockerReady Callback) {
+func Start(extraArgs string, unlockerReady, exitNotifier Callback) {
 	// Split the argument string on "--" to get separated command line
 	// arguments.
 	var splitArgs []string
@@ -50,13 +50,15 @@ func Start(extraArgs string, unlockerReady Callback) {
 	loadedConfig, err := lnd.LoadConfig()
 	if err != nil {
 		_, _ = fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		exitNotifier.OnResponse([]byte(err.Error()))
+		return
 	}
 
 	// Hook interceptor for os signals.
 	if err := signal.Intercept(); err != nil {
 		_, _ = fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		exitNotifier.OnResponse([]byte(err.Error()))
+		return
 	}
 
 	// Set up channels that will be notified when the RPC servers are ready
@@ -85,6 +87,8 @@ func Start(extraArgs string, unlockerReady Callback) {
 			} else {
 				fmt.Fprintln(os.Stderr, err)
 			}
+			exitNotifier.OnResponse([]byte(err.Error()))
+			return
 		}
 	}()
 
